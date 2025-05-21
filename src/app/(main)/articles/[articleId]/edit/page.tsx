@@ -10,6 +10,7 @@ import { EditArticleForm } from "@/features/articles/components/edit-article-for
 
 import { useGetArticle } from "@/features/articles/api/use-get-article";
 import { useGetCurrent } from "@/features/auth/api/use-get-current";
+import { DeleteArticleModal } from "@/features/articles/components/delete-article-modal";
 
 interface EditArticlePageProps {
   params: {
@@ -37,6 +38,7 @@ const EditArticlePage = ({ params }: EditArticlePageProps) => {
 
   return (
     <>
+      <DeleteArticleModal />
       <Container className="flex flex-col gap-4">
         <Link href="/home">
           <Button variant="outline">
