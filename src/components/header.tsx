@@ -1,6 +1,6 @@
 import { Container } from "@/components/container";
-import { UserButton } from "./user-button";
 import { CreateArticleButton } from "./create-article-button";
+import { UserButton } from "@/features/auth/components/user-button";
 
 export const Header = () => {
   return (
