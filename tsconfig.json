@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    // Drizzleは最新のJavaScript/TypeScript機能を使用しているため、ES5へのコンパイルをサポートしていない
+    // なので、コンパイルのターゲットをes5からes2016に変更
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,

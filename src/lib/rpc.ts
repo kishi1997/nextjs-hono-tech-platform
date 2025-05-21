@@ -1,4 +1,4 @@
-import { AppType } from "@/app/api/[[...router]]/route";
+import { AppType } from "@/app/api/[[...route]]/route";
 import { hc } from "hono/client";
 
 // import type { AppType } from "@/app/api/[[...route]]/route";

@@ -1,4 +1,9 @@
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 import { cn } from "@/lib/utils";
 
@@ -17,6 +22,11 @@ export const Modal = ({
 }: ModalProps) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
+      {/* Shadcn `DialogContent` requires a `DialogTitle`エラー回避 */}
+      <DialogTitle className="sr-only">Dialog</DialogTitle>
+      <DialogDescription className="sr-only">
+        Dialog Description
+      </DialogDescription>
       <DialogContent
         className={cn(
           "w-11/12 p-0 border-none overflow-y-auto hide-scrollbar max-h-[85vh] rounded-lg",

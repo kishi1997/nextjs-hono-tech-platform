@@ -16,6 +16,7 @@ export const Hero = () => {
         <Image
           src="/images/hero.png"
           alt="Hero Image"
+          priority
           width={1700}
           height={1700}
           className="object-cover"
