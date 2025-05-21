@@ -18,7 +18,9 @@ import { Form, FormField } from "@/components/ui/form";
 import { useUpdateArticle } from "@/features/articles/api/use-update-article";
 import { Article } from "@/features/articles/types";
 import { updateArticleSchema } from "@/features/articles/schemas";
-
+import { usePublishArticle } from "@/features/articles/api/use-publish-article";
+import { useUnpublishArticle } from "@/features/articles/api/use-unpublish-article";
+import { useDeleteArticleModal } from "../hooks/use-delete-article-modal";
 interface EditArticleFormProps {
   article: Article;
 }
@@ -29,7 +31,11 @@ export const EditArticleForm = ({ article }: EditArticleFormProps) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const { mutate: updateArticle, isPending: isUpdatingArticle } =
     useUpdateArticle();
-
+  const { mutate: publishArticle, isPending: isPublishingArticle } =
+    usePublishArticle();
+  const { mutate: unpublishArticle, isPending: isUnpublishingArticle } =
+    useUnpublishArticle();
+  const { open: openDeleteArticleModal } = useDeleteArticleModal();
   const form = useForm<z.infer<typeof updateArticleSchema>>({
     resolver: zodResolver(updateArticleSchema),
     defaultValues: {
@@ -52,7 +58,13 @@ export const EditArticleForm = ({ article }: EditArticleFormProps) => {
     form.setValue("icon", emojiData.emoji);
     setShowEmojiPicker(false);
   };
+  const handlePublishArticle = () => {
+    publishArticle({ param: { article_id: article.id } });
+  };
 
+  const handleUnpublishArticle = () => {
+    unpublishArticle({ param: { article_id: article.id } });
+  };
   return (
     <>
       <div>
@@ -151,8 +163,8 @@ export const EditArticleForm = ({ article }: EditArticleFormProps) => {
                     <Button
                       type="button"
                       className="w-full"
-                      onClick={() => {}}
-                      disabled={false}
+                      onClick={handlePublishArticle}
+                      disabled={isPublishingArticle}
                     >
                       Publish
                     </Button>
@@ -160,8 +172,8 @@ export const EditArticleForm = ({ article }: EditArticleFormProps) => {
                     <Button
                       type="button"
                       className="w-full"
-                      onClick={() => {}}
-                      disabled={false}
+                      onClick={handleUnpublishArticle}
+                      disabled={isUnpublishingArticle}
                     >
                       Unpublish
                     </Button>
@@ -170,7 +182,7 @@ export const EditArticleForm = ({ article }: EditArticleFormProps) => {
                     variant="destructive"
                     type="button"
                     className="w-full"
-                    onClick={() => {}}
+                    onClick={openDeleteArticleModal}
                   >
                     Delete
                   </Button>
