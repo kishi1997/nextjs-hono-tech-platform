@@ -43,6 +43,11 @@ yarn install
 
 ### 3. Set up environment variables
 
+> **Note:** To obtain the required values for the `.env` file, you need to:
+>
+> * Set up [Google OAuth credentials](https://developers.google.com/identity/protocols/oauth2) (Client ID and Client Secret).
+> * Create a PostgreSQL database using [Neon](https://neon.tech/).
+
 Copy `.env.sample` to `.env` and update the values as needed.
 
 ```bash
@@ -66,3 +71,10 @@ yarn dev
 
 Visit `http://localhost:3000` in your browser to see the app running.
 
+## Deployment
+
+This app can be deployed using [Vercel](https://vercel.com/). Connect the repository to Vercel and configure environment variables to deploy.
+
+## License
+
+This project is licensed under the MIT License.
